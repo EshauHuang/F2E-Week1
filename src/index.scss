@@ -1,0 +1,112 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, Noto, sans-serif;
+}
+
+canvas,
+caption,
+center,
+cite,
+code,
+dd,
+del,
+dfn,
+div,
+dl,
+dt,
+em,
+embed,
+fieldset,
+font,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+i,
+iframe,
+img,
+ins,
+kbd,
+label,
+legend,
+li,
+menu,
+object,
+ol,
+p,
+pre,
+q,
+s,
+samp,
+small,
+span,
+strike,
+strong,
+sub,
+sup,
+table,
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr,
+tt,
+u,
+ul,
+var {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+input {
+  outline: none;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+
+img {
+  display: block;
+}
+
+:root {
+  font-size: 1.1vw;
+
+  @media (max-width: 480px) {
+      font-size: 1vw;
+  }
+}
+
+@font-face {
+  font-family: "Cubic 11";
+  src: url("/public/font/Cubic_11_1.013_R.woff") format("woff"),
+    url("/public/font/Cubic_11_1.013_R.woff2") format("woff2");
+}
