@@ -4,6 +4,7 @@ import styled, { css } from "styled-components";
 import Navbar from "@/components/navbar/navbar.component";
 import StartPart from "@/components/start-part/start-part.component";
 import FightingPart from "@/components/fighting-part/fighting-part.component"
+import CharacterSelectPart from "@/components/character-select-part/character-select-part.component.jsx";
 
 import { User as LUser } from "@/components/elements"
 
@@ -40,7 +41,8 @@ function App() {
       {/* <Navbar /> */}
       <Body>
         {/* <StartPart userRef={userRef} isStart={isStart} /> */}
-        <FightingPart />
+        {/* <FightingPart /> */}
+        {/* <CharacterSelectPart /> */}
       </Body>
       {/* {isStart && <User ref={userRef}/>} */}
     </Bg>

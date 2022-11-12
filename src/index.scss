@@ -1,11 +1,8 @@
 html,
 body {
-  height: 100%;
-}
-
-body {
   margin: 0;
-  font-family: Roboto, Noto, sans-serif;
+  height: 100%;
+  font-family: "Cubic 11";
 }
 
 canvas,
@@ -101,9 +98,10 @@ img {
   font-size: 1.1vw;
 
   @media (max-width: 480px) {
-      font-size: 1vw;
+    font-size: 1vw;
   }
 }
+
 
 @font-face {
   font-family: "Cubic 11";

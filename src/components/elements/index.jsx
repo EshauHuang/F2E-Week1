@@ -13,17 +13,21 @@ import bench from "@/assets/bench.png";
 import flower from "@/assets/flower.png";
 import monster01 from "@/assets/monster_01.gif";
 import monster02 from "@/assets/monster_02.gif";
-import monster03 from "@/assets/monster_03.png";
-import monster04 from "@/assets/monster_04.gif";
+import monster03 from "@/assets/monster_03.gif";
+import thunder from "@/assets/thunder.gif";
 
 export const Image = styled.img`
   width: 100%;
   position: relative;
 
-  ${({ locate, top, left, width }) => locate && `
+  ${({ locate, top, left, width, right, bottom }) =>
+    locate &&
+    `
     position: absolute;
     top: ${top ? top : "auto"};
     left: ${left ? left : "auto"};
+    right: ${right ? right : "auto"};
+    bottom: ${bottom ? bottom : "auto"};
     width: ${width ? width : "auto"};
   `}
 `;
@@ -41,9 +45,16 @@ export const Tree01 = (props) => <Image {...props} src={tree01} />;
 export const Tree02 = (props) => <Image {...props} src={tree02} />;
 export const Bench = (props) => <Image {...props} src={bench} />;
 export const Flower = (props) => <Image {...props} src={flower} />;
-export const Monster01 = (props) => <Image {...props} src={monster01} />;
-export const Monster02 = (props) => <Image {...props} src={monster02} />;
-export const Monster03 = (props) => <Image {...props} src={monster03} />;
-export const Monster04 = (props) => <Image {...props} src={monster04} />;
+export const Thunder = (props) => <Image {...props} src={thunder} />;
+export const Monster01 = ({ src, ...otherProps }) => (
+  <Image {...otherProps} src={src ? src : monster01} />
+);
+export const Monster02 = ({ src, ...otherProps }) => (
+  <Image {...otherProps} src={src ? src : monster02} />
+);
+export const Monster03 = ({ src, ...otherProps }) => (
+  <Image {...otherProps} src={src ? src : monster03} />
+);
+
 
 export const Grass = (props) => <Image {...props} src={grass} />;
