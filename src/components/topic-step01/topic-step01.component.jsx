@@ -117,7 +117,7 @@ const TopicStep01 = () => {
     <Container>
       <Bg>
         {array.map((i) => (
-          <BgText>
+          <BgText key={`${i}`}>
             <p>THE F2E</p>
             <p>THE F2E</p>
             <p>THE F2E</p>

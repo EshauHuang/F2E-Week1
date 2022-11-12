@@ -3,6 +3,7 @@ body {
   margin: 0;
   height: 100%;
   font-family: "Cubic 11";
+  font-weight: 400;
 }
 
 canvas,
@@ -96,7 +97,6 @@ img {
 
 :root {
   font-size: 1.1vw;
-
   @media (max-width: 480px) {
     font-size: 1vw;
   }

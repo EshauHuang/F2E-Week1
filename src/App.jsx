@@ -6,6 +6,7 @@ import StartPart from "@/components/start-part/start-part.component";
 import FightingPart from "@/components/fighting-part/fighting-part.component"
 import CharacterSelectPart from "@/components/character-select-part/character-select-part.component.jsx";
 import TopicStep01 from "@/components/topic-step01/topic-step01.component.jsx"
+import TopicStep02 from "@/components/topic-step02/topic-step02.component.jsx";
 
 import { User as LUser } from "@/components/elements"
 
@@ -44,7 +45,8 @@ function App() {
         {/* <StartPart userRef={userRef} isStart={isStart} /> */}
         {/* <FightingPart /> */}
         {/* <CharacterSelectPart /> */}
-        <TopicStep01 />
+        {/* <TopicStep01 /> */}
+        <TopicStep02 />
       </Body>
       {/* {isStart && <User ref={userRef}/>} */}
     </Bg>
