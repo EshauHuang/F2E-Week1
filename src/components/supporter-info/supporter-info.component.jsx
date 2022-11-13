@@ -1,4 +1,6 @@
-import styled from "styled-components";
+import { useState, useRef, useEffect, useLayoutEffect } from "react";
+import styled, { keyframes } from "styled-components";
+import gsap from "gsap";
 
 import photoBlock from "@/assets/photo-block.png";
 import photoKdan from "@/assets/photo-kdan.png";
@@ -77,7 +79,7 @@ const SupporterCart = styled.div`
   width: 58.06rem;
   height: 100%;
   position: absolute;
-  transform: translateX(-50%);
+  /* transform: translateX(-50%); */
   top: 0;
   left: 50%;
   display: flex;
@@ -89,9 +91,9 @@ const SupporterCart = styled.div`
 
   left: ${({ left }) => left};
   ${({ scale }) =>
-    scale &&
+    scale < 1 &&
     `
-    transform: translateX(-50%) scale(${scale});
+    scale: ${scale};
     z-index: -1;
   `};
 
@@ -138,16 +140,163 @@ const Arrow = styled.div`
     })`};
 `;
 
+const initialCardsValue = {
+  0: {
+    left: "50%",
+    scale: 1,
+  },
+  1: {
+    left: "100%",
+    scale: 0.85,
+  },
+  2: {
+    left: "0%",
+    scale: 0.85,
+  },
+};
+
 const SupporterInfo = () => {
+  const [cardsValue, setCardsValue] = useState(initialCardsValue);
+  const cardRefs = useRef([]);
+  const initRender = useRef(true);
+  const isCardMoving = useRef(3);
+
+  useEffect(() => {
+    if (!cardRefs.current) return;
+  }, [cardRefs]);
+
+  useLayoutEffect(() => {
+    if (!cardRefs.current || !cardRefs.current.length) return;
+
+    Object.keys(cardsValue).forEach((id) => {
+      const { left, scale, direction } = cardsValue[id];
+      const el = cardRefs.current[id];
+      let tl = gsap.timeline();
+      const leftNum = Number(left.split("%")[0]);
+      tl.set(el, { x: "-50%" });
+
+      if (initRender.current) {
+        initRender.current = false;
+        return;
+      }
+      
+      if (leftNum === 50) {
+        tl.set(el, { zIndex: 1 });
+      } else {
+        tl.set(el, { zIndex: -1 });
+      }
+
+      if (leftNum === 100 && direction === "left") {
+        tl.to(el, { left: "-50%", duration: 0.25 });
+        tl.set(el, { left: "150%" });
+        tl.to(el, {
+          left: "100%",
+          duration: 0.25,
+          onComplete: () => isCardMoving.current++,
+        });
+      } else if (leftNum === 0 && direction === "right") {
+        tl.to(el, { left: "150%", duration: 0.25 });
+        tl.set(el, { left: "-50" });
+        tl.to(el, {
+          left: "0%",
+          duration: 0.25,
+          onComplete: () => isCardMoving.current++,
+        });
+      } else {
+        tl.to(el, {
+          left,
+          scale,
+          duration: 0.5,
+          onComplete: () => isCardMoving.current++,
+        });
+      }
+    });
+  }, [cardsValue, cardRefs]);
+
+  const cardMove = (direction, left) => {
+    //left: 50% -> 0, 100% -> 50%, 0 -> 100%
+    //right: 50% -> 100%, 100% -> 0, 0 -> 50%
+
+    if (!direction || left === "undefined") return;
+
+    let tmpLeft;
+    const isPercentStr = typeof left === "string" && left.search("%") >= 0;
+
+    // ex: 50%
+    if (isPercentStr) {
+      [tmpLeft] = left.split("%");
+      tmpLeft = Number(tmpLeft);
+    } else {
+      tmpLeft = Number(left);
+    }
+
+    if (isNaN(tmpLeft)) return;
+
+    if (direction === "left") {
+      return tmpLeft - 50 >= 0 ? tmpLeft - 50 : 100;
+    }
+
+    if (direction === "right") {
+      return tmpLeft + 50 <= 100 ? tmpLeft + 50 : 0;
+    }
+  };
+
+  const cardScale = (left) => {
+    //left: !50% -> scale(0.85),
+    //if scale < 1 card will add "z-index: -1" property with styled-components
+    if (left === "undefined") return;
+    let tmpLeft = Number(left);
+
+    if (tmpLeft === null) return;
+
+    return tmpLeft === 50 ? 1 : 0.85;
+  };
+
+  const handleMoveCard = (direction) => {
+    if (isCardMoving.current < 3) return;
+    isCardMoving.current = 0;
+    const newCardsValue = Object.keys(cardsValue).reduce(
+      (newCardsValue, id) => {
+        const { left } = cardsValue[id];
+        const newLeft = cardMove(direction, left);
+        const newScale = cardScale(newLeft);
+
+        return {
+          ...newCardsValue,
+          [id]: {
+            left: `${newLeft}%`,
+            scale: newScale,
+            direction,
+          },
+        };
+      },
+      {}
+    );
+
+    setCardsValue(newCardsValue);
+  };
+
   return (
     <Container>
       <TitleWrap>
         <Title>贊助單位</Title>
       </TitleWrap>
       <Body>
-        <Arrow left="20.5%" direction="left" />
-        <Arrow left="79.5%" direction="right" />
-        <SupporterCart>
+        <Arrow
+          left="20.5%"
+          direction="left"
+          onClick={() => handleMoveCard("left")}
+        />
+        <Arrow
+          left="79.5%"
+          direction="right"
+          onClick={() => handleMoveCard("right")}
+        />
+        <SupporterCart
+          ref={(el) => (cardRefs.current[0] = el)}
+          scale={1}
+          // left={cardsValue[0].left}
+        >
           <SupporterPhotoWrap>
             <SupporterPhoto src={photoKdan} />
           </SupporterPhotoWrap>
@@ -158,7 +307,12 @@ const SupporterInfo = () => {
             <SupporterName>凱鈿科技</SupporterName>
           </SupporterCardRightPart>
         </SupporterCart>
-        <SupporterCart scale="0.85" pWidth="55%" left="100%">
+        <SupporterCart
+          ref={(el) => (cardRefs.current[1] = el)}
+          scale={0.85}
+          pWidth="55%"
+          left="100%"
+        >
           <SupporterPhotoWrap>
             <SupporterPhoto src={photoBlock} />
           </SupporterPhotoWrap>
@@ -169,7 +323,11 @@ const SupporterInfo = () => {
             <SupporterName>版塊設計</SupporterName>
           </SupporterCardRightPart>
         </SupporterCart>
-        <SupporterCart scale="0.85" left="0">
+        <SupporterCart
+          ref={(el) => (cardRefs.current[2] = el)}
+          scale="0.85"
+          left="0"
+        >
           <SupporterPhotoWrap>
             <SupporterPhoto src={photoTitan} />
           </SupporterPhotoWrap>
