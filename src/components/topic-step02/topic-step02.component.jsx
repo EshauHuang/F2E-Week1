@@ -5,11 +5,12 @@ import topic02 from "@/assets/topic_02.png";
 import topic03 from "@/assets/topic_03.png";
 
 const Container = styled.div`
-  position: absolute;
+  /* position: absolute;
   top: 0;
-  left: 0;
+  left: 0; */
   width: 100%;
-  height: 100vh;
+  /* height: 100vh; */
+  padding-top: 5%;
   background-color: #000000;
 `;
 
@@ -23,7 +24,6 @@ const Title = styled.h1`
   color: #ffe600;
   text-align: center;
   white-space: nowrap;
-  margin-top: 5%;
 `;
 
 const SubTitleWrap = styled.div`

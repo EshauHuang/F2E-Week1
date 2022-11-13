@@ -8,11 +8,11 @@ export const linearText = css`
 `;
 
 const Container = styled.div`
-  position: absolute;
+  /* position: absolute;
   top: 0;
-  left: 0;
+  left: 0; */
   width: 100%;
-  height: 100vh;
+  /* height: 100vh; */
   padding: 2.5rem 5rem 7.5rem;
   background-color: #000000;
   white-space: nowrap;

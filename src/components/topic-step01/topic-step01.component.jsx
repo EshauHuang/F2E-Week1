@@ -8,11 +8,12 @@ import teacher from "@/assets/teacher.png";
 import shining from "@/assets/shining.gif";
 
 const Container = styled.div`
-  position: absolute;
+  position: relative;
+  /* position: absolute;
   top: 0;
-  left: 0;
+  left: 0; */
   width: 100%;
-  height: 100vh;
+  /* height: 100vh; */
   background-color: #000000;
   padding: 0 6px;
 `;
@@ -111,7 +112,7 @@ const DownIcon = styled(PDownIcon)`
 `;
 
 const TopicStep01 = () => {
-  const array = Array.from({ length: 70 }, (_, i) => i);
+  const array = Array.from({ length: 10 }, (_, i) => i);
 
   return (
     <Container>

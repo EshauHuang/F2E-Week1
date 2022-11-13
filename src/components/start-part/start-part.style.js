@@ -12,6 +12,8 @@ import {
   Monster01 as LMonster,
 } from "@/components/elements";
 
+import grass from "@/assets/grass_01.png"
+
 
 export const linearText = css`
   -webkit-background-clip: text;
@@ -31,11 +33,11 @@ export const linearRainbow = css`
   );
 `;
 
-
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 1280px;
+  max-width: 1200px;
+  margin: 0 auto;
 `;
 
 export const HeaderWrap = styled.div`
@@ -53,10 +55,14 @@ export const Header = styled.div`
   font-family: "Cubic 11";
   font-weight: 400;
   z-index: 1;
+
+  @media (max-width: 480px) {
+    border: 4px solid white;
+  }
 `;
 
 export const Title = styled.h1`
-  font-size: 12.3rem;
+  font-size: min(12.3rem, 176px);
   position: relative;
 
   &:after {
@@ -74,7 +80,7 @@ export const Title = styled.h1`
 `;
 
 export const SubTitle = styled.h4`
-  font-size: 2.5rem;
+  font-size: min(2.5rem, 36px);
   position: absolute;
   top: 93%;
   right: 2%;
@@ -99,8 +105,20 @@ export const AttackAlert = styled(LAttackAlert)`
   z-index: 4;
 `;
 
+export const StartText = styled.div`
+  width: 100%;
+  font-size: 3rem;
+  color: white;
+  text-align: center;
+  position: absolute;
+  top: 75%;
+  left: 0;
+  z-index: 4;
+`
+
 export const Fire = styled(LFire)`
   z-index: 3;
+  max-width: ${({maxWidth}) => maxWidth};
 `;
 
 export const Tree01 = styled(LTree01)`
@@ -182,4 +200,16 @@ export const CastlePart = styled.section`
       color: black;
     }
   `}
+`;
+
+export const FullSpaceWithGrass = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-size: 100%;
+  background-image: url(${grass});
+  background-repeat: repeat;
+  z-index: -1;
 `;

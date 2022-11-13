@@ -20,9 +20,10 @@ const monsterStyle = css`
 `;
 
 export const Container = styled.div`
-  position: absolute;
+  position: relative;
+  /* position: absolute;
   top: 0;
-  left: 0;
+  left: 0; */
   width: 100%;
   height: 100vh;
 `;
@@ -49,7 +50,6 @@ export const Grass = styled(PGrass)`
   height: 100%;
 `;
 
-
 export const MonsterPart = styled.div`
   display: flex;
   align-items: center;
@@ -63,7 +63,6 @@ export const DownIcon = styled(PDownIcon)`
   right: 3%;
   width: 9%;
 `;
-
 
 export const DialogBoxPart = styled.div`
   height: 32%;

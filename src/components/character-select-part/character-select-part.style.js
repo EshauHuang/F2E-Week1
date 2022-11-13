@@ -22,13 +22,14 @@ export const linearRainbow = css`
 `;
 
 export const Container = styled.div`
-  position: absolute;
+position: relative;
+  /* position: absolute;
   top: 0;
-  left: 0;
+  left: 0; */
   width: 100%;
-  height: 100vh;
+  /* height: 100vh; */
   background-color: black;
-  padding: 40px 0;
+  padding: 2.5rem 0 5rem;
   display: flex;
   flex-direction: column;
 `;

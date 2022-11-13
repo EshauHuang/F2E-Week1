@@ -7,11 +7,11 @@ import flag from "@/assets/flag.png";
 import news from "@/assets/news.png";
 
 const Container = styled.div`
-  position: absolute;
+  /* position: absolute;
   top: 0;
-  left: 0;
+  left: 0; */
   width: 100%;
-  height: 100vh;
+  /* height: 100vh; */
   background-color: #000000;
   padding: 5rem 5.63rem;
 `;
@@ -46,7 +46,7 @@ const ActivityStepIcon = styled.img`
   width: 6.25rem;
 `;
 
-const ActivityStepDetail = styled.p`
+const ActivityStepDetail = styled.div`
   font-size: 2.5rem;
 `;
 

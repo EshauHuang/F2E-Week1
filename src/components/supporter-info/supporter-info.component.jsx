@@ -10,18 +10,19 @@ import logoKdan from "@/assets/logo-kdan.png";
 import logoTitan from "@/assets/logo-titan.png";
 
 const Container = styled.div`
-  position: absolute;
+  /* position: absolute;
   top: 0;
-  left: 0;
+  left: 0; */
+  padding-top: 3.56rem;
   width: 100%;
-  height: 100vh;
+  padding-bottom: 10.5rem;
   background-color: #339943;
 `;
 
 const TitleWrap = styled.div`
   width: 39.38rem;
   padding: 0.88rem 0;
-  margin: 3.56rem auto;
+  margin: 0 auto;
   text-align: center;
   background-color: #e74c4c;
   border: 4px solid #000000;
@@ -179,7 +180,7 @@ const SupporterInfo = () => {
         initRender.current = false;
         return;
       }
-      
+
       if (leftNum === 50) {
         tl.set(el, { zIndex: 1 });
       } else {
