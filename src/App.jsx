@@ -7,6 +7,9 @@ import FightingPart from "@/components/fighting-part/fighting-part.component"
 import CharacterSelectPart from "@/components/character-select-part/character-select-part.component.jsx";
 import TopicStep01 from "@/components/topic-step01/topic-step01.component.jsx"
 import TopicStep02 from "@/components/topic-step02/topic-step02.component.jsx";
+import ActivityInfo from "@/components/activity-info/activity-info.component.jsx"
+import ActivityRewardInfo from "@/components/activity-reward-info/activity-reward-info.component.jsx";
+import SupporterInfo from "@/components/supporter-info/supporter-info.component.jsx"
 
 import { User as LUser } from "@/components/elements"
 
@@ -46,7 +49,10 @@ function App() {
         {/* <FightingPart /> */}
         {/* <CharacterSelectPart /> */}
         {/* <TopicStep01 /> */}
-        <TopicStep02 />
+        {/* <TopicStep02 /> */}
+        {/* <ActivityInfo /> */}
+        {/* <ActivityRewardInfo /> */}
+        <SupporterInfo />
       </Body>
       {/* {isStart && <User ref={userRef}/>} */}
     </Bg>

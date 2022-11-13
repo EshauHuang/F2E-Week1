@@ -32,12 +32,14 @@ const SubTitleWrap = styled.div`
 `;
 
 const SubTitle = styled.h2`
-  padding: 17px 35px;
+  padding: 1.06rem 2.19rem;
   background-color: #001aff;
   border-radius: 50px;
   color: white;
   font-weight: 400;
   font-size: 2.25rem;
+  margin-top: 16px;
+  white-space: nowrap;
 `;
 
 const StageCardList = styled.div`
@@ -88,7 +90,7 @@ const StageDateText = styled.p`
 
 const StageTopicText = styled.div`
   font-size: 1.5rem;
-  padding: 3% 12%;
+  padding: 4% 12%;
   margin-left: 4%;
   background-color: #ffe600;
   border-radius: 50px;
@@ -109,12 +111,14 @@ const StageTitle = styled.h3`
   align-items: center;
 `;
 
-const StageLink = styled.div`
+const StageLink = styled.a`
   font-size: 1.5rem;
   align-self: center;
-  padding: 17px 48px;
+  padding: 1.06rem 3rem;
   background-color: #001aff;
   color: #ffffff;
+  cursor: pointer;
+  white-space: nowrap; 
 `;
 
 const TopicStep02 = () => {
