@@ -96,13 +96,13 @@ function App() {
       />
       {isStart && (
         <>
-          {/* <FightingPart />
+          <FightingPart />
           <CharacterSelectPart />
           <TopicStep01 />
           <TopicStep02 />
           <ActivityInfo />
           <ActivityRewardInfo />
-          <SupporterInfo /> */}
+          <SupporterInfo />
           <User ref={userRef} />
         </>
       )}

@@ -197,7 +197,7 @@ const SupporterInfo = () => {
         });
       } else if (leftNum === 0 && direction === "right") {
         tl.to(el, { left: "150%", duration: 0.25 });
-        tl.set(el, { left: "-50" });
+        tl.set(el, { left: "-50%" });
         tl.to(el, {
           left: "0%",
           duration: 0.25,
