@@ -1,5 +1,9 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useLayoutEffect } from "react";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import gsap from "gsap";
 import styled, { css } from "styled-components";
+
+gsap.registerPlugin(ScrollTrigger);
 
 import Navbar from "@/components/navbar/navbar.component";
 import StartPart from "@/components/start-part/start-part.component";
@@ -34,33 +38,71 @@ const User = styled(LUser)`
 function App() {
   const [isStart, setIsStart] = useState(false);
   const userRef = useRef(null);
+  const monsterRef = useRef(null);
+  const bottomGrassRef = useRef(null);
 
+  useEffect(() => {
+    if (!monsterRef.current || !bottomGrassRef.current || !isStart) return;
+
+    // monsterRef.current.onload = function () {
+    //   gsap.to(userRef.current, {
+    //     scrollTrigger: {
+    //       trigger: monsterRef.current,
+    //       onEnter: () => console.log("enter3"),
+    //       start: "-300 80%",
+    //       end: "-300 80%",
+    //       markers: true,
+    //       pin: true,
+    //     },
+    //   });
+    // };
+    bottomGrassRef.current.onload = function () {
+      console.log("first")
+      gsap.to(userRef.current, {
+        scrollTrigger: {
+          trigger: bottomGrassRef.current,
+          onEnter: () => console.log("enter3"),
+          start: "-200 60%",
+          end: "top 60%",
+          markers: true,
+        },
+      });
+    };
+  }, [isStart, monsterRef, bottomGrassRef]);
 
   useEffect(() => {
     let handleKeyDownEvent;
 
-    document.addEventListener("keydown", handleKeyDownEvent = function (e) {
-      console.log("object");
-      if (e.key === "Enter") {
-        setIsStart(true);
-        document.removeEventListener("keydown", handleKeyDownEvent);
-      }
-    });
+    document.addEventListener(
+      "keydown",
+      (handleKeyDownEvent = function (e) {
+        console.log("object");
+        if (e.key === "Enter") {
+          setIsStart(true);
+          document.removeEventListener("keydown", handleKeyDownEvent);
+        }
+      })
+    );
   }, []);
 
   return (
     <Container>
       <Navbar />
-      <StartPart userRef={userRef} isStart={isStart} />
+      <StartPart
+        bottomGrassRef={bottomGrassRef}
+        monsterRef={monsterRef}
+        userRef={userRef}
+        isStart={isStart}
+      />
       {isStart && (
         <>
-          <FightingPart />
+          {/* <FightingPart />
           <CharacterSelectPart />
           <TopicStep01 />
           <TopicStep02 />
           <ActivityInfo />
           <ActivityRewardInfo />
-          <SupporterInfo />
+          <SupporterInfo /> */}
           <User ref={userRef} />
         </>
       )}

@@ -1,4 +1,7 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useLayoutEffect } from "react";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import gsap from "gsap";
+gsap.registerPlugin(ScrollTrigger);
 
 import {
   Container,
@@ -24,8 +27,41 @@ import {
   FullSpaceWithGrass,
 } from "./start-part.style";
 
-const StartPart = ({ isStart, userRef }) => {
+const StartPart = ({ isStart, userRef, monsterRef, bottomGrassRef }) => {
   const castleRef = useRef(null);
+  const headerRef = useRef(null);
+
+  useEffect(() => {
+    if (!isStart || !castleRef.current || !headerRef.current) return;
+
+    gsap.to(".moveEl", {
+      scrollTrigger: {
+        trigger: headerRef.current,
+        onEnter: () => console.log("enter"),
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      },
+      y: "-200",
+    });
+
+    userRef.current.onload = function () {
+
+      // 依照裝置大小調整 user 速度，草叢圖片最大
+          const deviceWidth = window.innerWidth;
+          console.log("deviceWidth", deviceWidth);
+      gsap.to(userRef.current, {
+        scrollTrigger: {
+          trigger: headerRef.current,
+          onEnter: () => console.log("enter2"),
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+        y: "-400",
+      });
+    };
+  }, [isStart, castleRef, headerRef, userRef]);
 
   useEffect(() => {
     if (!castleRef.current || !userRef.current || !isStart) return;
@@ -39,13 +75,13 @@ const StartPart = ({ isStart, userRef }) => {
   return (
     <Container>
       <CastlePart isStart={isStart}>
-        <HeaderWrap>
+        <HeaderWrap ref={headerRef}>
           <Header>
             <Title data-text="The F2E 4th">The F2E 4th</Title>
             <SubTitle>互動式網頁設計</SubTitle>
           </Header>
         </HeaderWrap>
-        <Castle ref={castleRef} />
+        <Castle className="moveEl" ref={castleRef} />
         {!isStart && <AttackAlert />}
         {!isStart && <StartText>請按 Enter 開始</StartText>}
         {!isStart && (
@@ -55,9 +91,8 @@ const StartPart = ({ isStart, userRef }) => {
             <Fire locate top="76.5%" width="20%" left="70%" maxWidth="240px" />
           </>
         )}
-        {isStart && <DownIcon />}
       </CastlePart>
-      <GrassPart>
+      <GrassPart className="moveEl">
         <Grass01 />
         <GrassContainer>
           <Tree01 locate top="22%" left="34.5%" width="11%" />
@@ -73,14 +108,14 @@ const StartPart = ({ isStart, userRef }) => {
         </GrassContainer>
       </GrassPart>
       {isStart && (
-        <GrassPart>
-          <Grass02 />
+        <GrassPart className="moveEl">
+          <Grass02 ref={bottomGrassRef} />
           <GrassContainer>
-            <Monster />
+            <Monster ref={monsterRef} />
           </GrassContainer>
         </GrassPart>
       )}
-      {!isStart && <FullSpaceWithGrass></FullSpaceWithGrass>}
+      {!isStart && <FullSpaceWithGrass />}
     </Container>
   );
 };
