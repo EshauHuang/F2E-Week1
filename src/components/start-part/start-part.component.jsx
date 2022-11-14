@@ -32,7 +32,6 @@ const StartPart = ({ isStart, userRef }) => {
     const castleEl = castleRef.current;
     const userEl = userRef.current;
     const { bottom } = castleEl.getBoundingClientRect();
-    console.log(bottom);
     userEl.style.top = `${bottom}px`;
   }, [isStart, castleRef, userRef]);
 

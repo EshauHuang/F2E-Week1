@@ -40,7 +40,6 @@ function App() {
     let handleKeyDownEvent;
 
     document.addEventListener("keydown", handleKeyDownEvent = function (e) {
-      console.log("object");
       if (e.key === "Enter") {
         setIsStart(true);
         document.removeEventListener("keydown", handleKeyDownEvent);
