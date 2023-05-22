@@ -57,14 +57,13 @@ function App() {
     //   });
     // };
     bottomGrassRef.current.onload = function () {
-      console.log("first")
       gsap.to(userRef.current, {
         scrollTrigger: {
           trigger: bottomGrassRef.current,
-          onEnter: () => console.log("enter3"),
+          // onEnter: () => console.log("enter3"),
           start: "-200 60%",
           end: "top 60%",
-          markers: true,
+          // markers: true,
         },
       });
     };
@@ -76,7 +75,6 @@ function App() {
     document.addEventListener(
       "keydown",
       (handleKeyDownEvent = function (e) {
-        console.log("object");
         if (e.key === "Enter") {
           setIsStart(true);
           document.removeEventListener("keydown", handleKeyDownEvent);

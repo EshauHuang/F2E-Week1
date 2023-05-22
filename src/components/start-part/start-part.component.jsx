@@ -37,7 +37,7 @@ const StartPart = ({ isStart, userRef, monsterRef, bottomGrassRef }) => {
     gsap.to(".moveEl", {
       scrollTrigger: {
         trigger: headerRef.current,
-        onEnter: () => console.log("enter"),
+        // onEnter: () => console.log("enter"),
         start: "top top",
         end: "bottom top",
         scrub: true,
@@ -46,14 +46,12 @@ const StartPart = ({ isStart, userRef, monsterRef, bottomGrassRef }) => {
     });
 
     userRef.current.onload = function () {
-
       // 依照裝置大小調整 user 速度，草叢圖片最大
-          const deviceWidth = window.innerWidth;
-          console.log("deviceWidth", deviceWidth);
+      const deviceWidth = window.innerWidth;
       gsap.to(userRef.current, {
         scrollTrigger: {
           trigger: headerRef.current,
-          onEnter: () => console.log("enter2"),
+          // onEnter: () => console.log("enter2"),
           start: "top top",
           end: "bottom top",
           scrub: true,
@@ -68,7 +66,6 @@ const StartPart = ({ isStart, userRef, monsterRef, bottomGrassRef }) => {
     const castleEl = castleRef.current;
     const userEl = userRef.current;
     const { bottom } = castleEl.getBoundingClientRect();
-    console.log(bottom);
     userEl.style.top = `${bottom}px`;
   }, [isStart, castleRef, userRef]);
 
