@@ -1,5 +1,5 @@
-import { forwardRef } from "react"
-import styled from "styled-components"
+import { forwardRef } from "react";
+import styled from "styled-components";
 
 import user from "@/assets/user.gif";
 import castle from "@/assets/castle.png";
@@ -46,9 +46,9 @@ export const Tree02 = (props) => <Image {...props} src={tree02} />;
 export const Bench = (props) => <Image {...props} src={bench} />;
 export const Flower = (props) => <Image {...props} src={flower} />;
 export const Thunder = (props) => <Image {...props} src={thunder} />;
-export const Monster01 = ({ src, ...otherProps }) => (
-  <Image {...otherProps} src={src ? src : monster01} />
-);
+export const Monster01 = forwardRef(({ src, ...otherProps }, ref) => (
+  <Image ref={ref && ref} {...otherProps} src={src ? src : monster01} />
+));
 export const Monster02 = ({ src, ...otherProps }) => (
   <Image {...otherProps} src={src ? src : monster02} />
 );
@@ -56,5 +56,6 @@ export const Monster03 = ({ src, ...otherProps }) => (
   <Image {...otherProps} src={src ? src : monster03} />
 );
 
-
-export const Grass = (props) => <Image {...props} src={grass} />;
+export const Grass = forwardRef((props, ref) => (
+  <Image ref={ref && ref} {...props} src={grass} />
+));

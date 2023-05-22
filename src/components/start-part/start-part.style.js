@@ -162,7 +162,7 @@ export const Grass02 = styled(PGrass)`
 export const Monster = styled(LMonster)`
   width: 14%;
   position: absolute;
-  bottom: 0;
+  top: 10%;
   left: 50%;
   transform: translate(-50%);
 `;
@@ -172,6 +172,7 @@ export const GrassPart = styled.div`
   position: relative;
   width: 100%;
   overflow: hidden;
+  z-index: 1;
 `;
 
 export const GrassContainer = styled.div`
